@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity Bill Management</title>
+    <style>
+        body {
+            font-family: Myraid Pro, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            background-color: #f0f0f0; /* Light grey background */
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            margin-bottom: 20px;
+            padding: 15px 0;
+            background-color: #9d9292; /* Red padding above and below */
+            color: white;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .action-buttons a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #ebeff4; /* White-grey button background */
+            color: rgb(12, 12, 12);
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .action-buttons a:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            color: white;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th {
+            background-color: #9a8686; /* Red heading background */
+            color: white; /* White font for header */
+            padding: 10px;
+        }
+        td {
+            padding: 10px;
+            text-align: center;
+            background-color: #f2f2f2; /* Light grey for table rows */
+            color: black; /* Black font for table rows */
+        }
+        tr:nth-child(even) td {
+            background-color: #e6e6e6; /* Slightly darker grey for alternating rows */
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>Electricity Bill Management System</h1>
+    </nav>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <div class="action-buttons">
+            <a href="/insert">Insert Record</a>
+            <a href="/search">Search Record</a>
+            <a href="/update">Update Record</a>
+            <a href="/delete">Delete Record</a>
+        </div>
+    </nav>
+
+    <!-- Display All Records -->
+    <h2>All Records</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Customer Number</th>
+                <th>Invoice Number</th>
+                <th>Units Consumed</th>
+                <th>Invoice Amount</th>
+                <th>Amount Paid</th>
+                <th>Date</th>
+                <th>Payment Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if records %}
+                {% for record in records %}
+                <tr>
+                    <td>{{ record[0] }}</td>
+                    <td>{{ record[1] }}</td>
+                    <td>{{ record[2] }}</td>
+                    <td>{{ record[3] }}</td>
+                    <td>{{ record[4] }}</td>
+                    <td>{{ record[5] }}</td>
+                    <td>{{ 'Paid' if record[6] else 'Not Paid' }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="7">No records found</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</body>
+</html>
